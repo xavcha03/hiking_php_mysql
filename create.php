@@ -2,24 +2,27 @@
 	require("./bdConnection.php");
 
 	if(!empty($_POST)){
+
+
+
 		$query = "INSERT INTO hiking
 					(name, difficulty, distance, duration, height_difference)
 					VALUES
 					(:name, :difficulty, :distance, :duration, :height_difference)
 		";
-	$stm = $db->prepare($query);
+		$stm = $db->prepare($query);
 
-	$stm->bindParam(':name', $_POST['name']);
-	$stm->bindParam(':difficulty', $_POST['difficulty']);
-	$stm->bindParam(':distance', $_POST['distance']);
-	$stm->bindParam(':duration', $_POST['duration']);
-	$stm->bindParam(':height_difference', $_POST['height_difference']);
+		$stm->bindParam(':name', $_POST['name']);
+		$stm->bindParam(':difficulty', $_POST['difficulty']);
+		$stm->bindParam(':distance', $_POST['distance']);
+		$stm->bindParam(':duration', $_POST['duration']);
+		$stm->bindParam(':height_difference', $_POST['height_difference']);
 
-	if($stm->execute()){
-		echo "Ajout en bdd effectuée";
-	}else{
-		echo "L'ajout a échoué";
-	}
+		if($stm->execute()){
+			echo "Ajout en bdd effectuée";
+		}else{
+			echo "L'ajout a échoué";
+		}
 
 	}
 ?>
